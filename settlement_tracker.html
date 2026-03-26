@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PPB Settlements Filing — Stanbic Bank Uganda</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#003B6F;--blue-mid:#005B9A;--blue-light:#E8F1FA;
+  --gold:#C8972B;--green:#1A7A4A;--green-bg:#E8F5EE;
+  --red:#C0392B;--red-bg:#FDECEA;--amber:#D4800A;--amber-bg:#FEF3E2;
+  --gray-900:#1A1D23;--gray-700:#3D4451;--gray-500:#6B7280;
+  --gray-300:#D1D5DB;--gray-100:#F3F5F8;--white:#FFFFFF;
+  --border:#E2E6EA;--radius:8px;
+  --shadow:0 1px 4px rgba(0,0,0,0.08),0 4px 16px rgba(0,0,0,0.04);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#F0F3F8;color:var(--gray-900);min-height:100vh;font-size:14px;}
+
+.nav{background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,59,111,0.3);}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+.nav-logo{width:34px;height:34px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--blue);}
+.nav-title{color:#fff;font-weight:600;font-size:16px;}
+.nav-sub{color:rgba(255,255,255,0.55);font-size:12px;margin-left:4px;}
+.nav-user{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:13px;}
+.nav-avatar{width:30px;height:30px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--blue);}
+
+.shell{display:flex;min-height:calc(100vh - 56px);}
+.sidebar{width:210px;background:var(--white);border-right:1px solid var(--border);padding:20px 0;flex-shrink:0;}
+.sidebar-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray-500);padding:12px 20px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:var(--gray-700);font-weight:500;font-size:13.5px;border-left:3px solid transparent;transition:all .15s;}
+.nav-item:hover{background:var(--blue-light);color:var(--blue);}
+.nav-item.active{background:var(--blue-light);color:var(--blue);border-left-color:var(--blue);font-weight:600;}
+.nav-item .icon{font-size:16px;width:20px;text-align:center;}
+.nav-badge{margin-left:auto;background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;}
+
+.main{flex:1;padding:28px 32px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.section-title{font-size:20px;font-weight:700;}
+.section-title span{color:var(--blue);}
+
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--radius);border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:600;transition:all .15s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--blue-mid);}
+.btn-ghost{background:transparent;color:var(--gray-700);border:1.5px solid var(--border);}
+.btn-ghost:hover{background:var(--gray-100);}
+.btn-sm{padding:6px 13px;font-size:12.5px;}
+.btn-approve{background:var(--green-bg);color:var(--green);border:1.5px solid #A8D5BC;}
+.btn-approve:hover{background:#d0eddc;}
+.btn-flag{background:var(--red-bg);color:var(--red);border:1.5px solid #F0BEBA;}
+.btn-flag:hover{background:#fad5d2;}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.card{background:var(--white);border-radius:10px;padding:18px 20px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.card-label{font-size:11.5px;font-weight:500;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;}
+.card-value{font-size:26px;font-weight:700;line-height:1;}
+.card-value.blue{color:var(--blue);}
+.card-value.green{color:var(--green);}
+.card-value.amber{color:var(--amber);}
+.card-value.red{color:var(--red);}
+.card-sub{font-size:12px;color:var(--gray-500);margin-top:5px;}
+.card-bar{height:3px;border-radius:2px;margin-top:12px;background:var(--gray-100);}
+.card-bar-fill{height:100%;border-radius:2px;}
+
+.panel{background:var(--white);border-radius:10px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--border);}
+.panel-title{font-weight:600;font-size:15px;}
+.panel-body{padding:22px;}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:12.5px;font-weight:600;color:var(--gray-700);}
+.req{color:var(--red);margin-left:2px;}
+.form-input,.form-select,.form-textarea{padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:13.5px;color:var(--gray-900);background:var(--white);transition:border-color .15s;outline:none;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--blue);}
+.form-input:read-only{background:var(--gray-100);color:var(--gray-500);cursor:default;}
+.form-textarea{resize:vertical;min-height:70px;}
+.calc-note{font-size:11px;color:var(--blue);margin-top:3px;font-style:italic;}
+
+.radio-group{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.radio-item{display:flex;align-items:center;gap:9px;font-size:13.5px;cursor:pointer;}
+.radio-item input[type=radio]{accent-color:var(--blue);width:15px;height:15px;cursor:pointer;}
+
+.file-drop{border:2px dashed var(--border);border-radius:var(--radius);padding:22px;text-align:center;cursor:pointer;transition:all .15s;background:var(--gray-100);}
+.file-drop:hover,.file-drop.dragover{border-color:var(--blue);background:var(--blue-light);}
+.file-drop-icon{font-size:26px;margin-bottom:6px;}
+.file-drop-text{font-size:13px;color:var(--gray-500);}
+.file-drop-text strong{color:var(--blue);}
+.file-list{margin-top:10px;display:flex;flex-direction:column;gap:6px;}
+.file-item{display:flex;align-items:center;gap:10px;background:var(--blue-light);border-radius:6px;padding:7px 12px;font-size:12.5px;font-weight:500;color:var(--blue);}
+.file-item-remove{margin-left:auto;cursor:pointer;color:var(--gray-500);font-size:16px;}
+.file-item-remove:hover{color:var(--red);}
+
+.filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.search-wrap{position:relative;flex:1;min-width:200px;}
+.search-wrap input{width:100%;padding:9px 12px 9px 36px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:13.5px;outline:none;transition:border-color .15s;}
+.search-wrap input:focus{border-color:var(--blue);}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--gray-500);}
+
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--gray-500);padding:10px 12px;border-bottom:1.5px solid var(--border);background:var(--gray-100);white-space:nowrap;}
+td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:12.5px;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#FAFBFD;}
+.mono{font-family:'DM Mono',monospace;font-size:12px;}
+.amount{font-weight:600;font-family:'DM Mono',monospace;}
+
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;}
+.badge-pending{background:var(--amber-bg);color:var(--amber);}
+.badge-approved{background:var(--green-bg);color:var(--green);}
+.badge-flagged{background:var(--red-bg);color:var(--red);}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.badge-ccy{background:var(--blue-light);color:var(--blue);padding:2px 8px;font-size:11px;border-radius:10px;font-weight:600;}
+
+.doc-chip{display:inline-flex;align-items:center;gap:5px;background:var(--blue-light);color:var(--blue);padding:3px 9px;border-radius:12px;font-size:11.5px;font-weight:500;cursor:pointer;border:none;font-family:inherit;}
+.doc-chip:hover{background:#d0e4f6;}
+
+.tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:22px;}
+.tab{padding:10px 20px;font-size:13.5px;font-weight:500;cursor:pointer;color:var(--gray-500);border-bottom:2.5px solid transparent;margin-bottom:-1.5px;transition:all .15s;}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+.tab:hover:not(.active){color:var(--gray-700);}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+.modal-backdrop.open{opacity:1;pointer-events:all;}
+.modal{background:var(--white);border-radius:12px;width:820px;max-width:97vw;max-height:93vh;overflow-y:auto;transform:scale(0.96) translateY(10px);transition:transform .2s;}
+.modal-backdrop.open .modal{transform:scale(1) translateY(0);}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--white);z-index:1;}
+.modal-title{font-size:16px;font-weight:700;}
+.modal-close{width:30px;height:30px;border-radius:6px;border:none;background:var(--gray-100);cursor:pointer;font-size:18px;color:var(--gray-500);display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:var(--border);}
+.modal-body{padding:24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;position:sticky;bottom:0;background:var(--white);}
+
+.detail-section{margin-bottom:22px;}
+.detail-section-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);border-bottom:1.5px solid var(--blue-light);padding-bottom:6px;margin-bottom:12px;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;}
+.detail-label{font-size:10.5px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
+.detail-value{font-size:13px;color:var(--gray-900);}
+.detail-value.calc{color:var(--blue);font-weight:600;}
+
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;flex-direction:column;gap:8px;}
+.toast{background:var(--gray-900);color:#fff;padding:12px 18px;border-radius:8px;font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;animation:slideIn .25s ease;box-shadow:0 4px 20px rgba(0,0,0,0.2);max-width:360px;}
+.toast.success{background:var(--green);}
+.toast.error{background:var(--red);}
+@keyframes slideIn{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+.empty{text-align:center;padding:48px 24px;color:var(--gray-500);}
+.empty-icon{font-size:36px;margin-bottom:12px;}
+.hidden{display:none!important;}
+.section-divider{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);border-bottom:2px solid var(--blue-light);padding-bottom:8px;margin:0 0 18px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-logo">SB</div>
+    <div>
+      <span class="nav-title">PPB Settlements Filing</span>
+      <span class="nav-sub">Recoveries &amp; Rehabilitation</span>
+    </div>
+  </div>
+  <div class="nav-user">
+    <span id="navDate"></span>
+    <div class="nav-avatar">EB</div>
+    <span>Edgar Bariyo</span>
+  </div>
+</nav>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-label">Navigation</div>
+    <div class="nav-item active" onclick="showView('dashboard')"><span class="icon">📊</span> Dashboard</div>
+    <div class="nav-item" onclick="showView('new')"><span class="icon">➕</span> New Filing</div>
+    <div class="nav-item" onclick="showView('records')"><span class="icon">📋</span> All Records <span class="nav-badge" id="pendingBadge">0</span></div>
+    <div class="sidebar-label" style="margin-top:12px;">Filter by Status</div>
+    <div class="nav-item" onclick="filterView('Pending')"><span class="icon">🕐</span> Pending</div>
+    <div class="nav-item" onclick="filterView('Approved')"><span class="icon">✅</span> Approved</div>
+    <div class="nav-item" onclick="filterView('Flagged')"><span class="icon">🚩</span> Flagged</div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div id="view-dashboard">
+      <div class="section-header">
+        <div class="section-title">Overview <span>/ Dashboard</span></div>
+        <button class="btn btn-primary" onclick="showView('new')">＋ New Filing</button>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card-label">Total Filings</div><div class="card-value blue" id="statTotal">0</div><div class="card-sub">All time</div><div class="card-bar"><div class="card-bar-fill" style="width:100%;background:var(--blue);"></div></div></div>
+        <div class="card"><div class="card-label">Pending</div><div class="card-value amber" id="statPending">0</div><div class="card-sub">Awaiting action</div><div class="card-bar"><div class="card-bar-fill" style="width:55%;background:var(--amber);"></div></div></div>
+        <div class="card"><div class="card-label">Approved</div><div class="card-value green" id="statApproved">0</div><div class="card-sub">Cleared</div><div class="card-bar"><div class="card-bar-fill" style="width:75%;background:var(--green);"></div></div></div>
+        <div class="card"><div class="card-label">Flagged</div><div class="card-value red" id="statFlagged">0</div><div class="card-sub">Needs escalation</div><div class="card-bar"><div class="card-bar-fill" style="width:20%;background:var(--red);"></div></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">Recent Filings</span><button class="btn btn-ghost btn-sm" onclick="showView('records')">View All →</button></div>
+        <div class="panel-body" style="padding:0;">
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Ref</th><th>Date</th><th>CIF</th><th>Customer</th><th>Account</th><th>CCY</th><th>Approved Amt</th><th>Vendor</th><th>Status</th><th>Docs</th><th>Actions</th></tr></thead>
+            <tbody id="dashboardTbody"></tbody>
+          </table></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ NEW FILING ═══ -->
+    <div id="view-new" class="hidden">
+      <div class="section-header">
+        <div class="section-title">New Filing <span>/ PPB Settlements</span></div>
+        <button class="btn btn-ghost" onclick="showView('dashboard')">← Back</button>
+      </div>
+      <p style="font-size:12.5px;color:var(--gray-500);margin-bottom:20px;font-style:italic;">Fields marked <span style="color:var(--red);">*</span> are required. <span style="color:var(--blue);">⟳ Auto</span> fields are calculated automatically.</p>
+
+      <!-- A: IDENTIFICATION -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">A — Customer &amp; Settlement Identification</span></div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Date <span class="req">*</span></label>
+              <input id="f-date" class="form-input" type="date"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Update Time / Date</label>
+              <input id="f-update-time" class="form-input" type="datetime-local"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CIF ID <span class="req">*</span></label>
+              <input id="f-cif" class="form-input" type="text" placeholder="e.g. 10023847"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer Name <span class="req">*</span></label>
+              <input id="f-name" class="form-input" type="text" placeholder="Enter full name"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Loan Account Number <span class="req">*</span></label>
+              <input id="f-acct" class="form-input" type="text" placeholder="e.g. 9030001234"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Facility Type <span class="req">*</span></label>
+              <select id="f-facility" class="form-select">
+                <option value="">Select your answer…</option>
+                <option>Term Loan</option>
+                <option>Overdraft</option>
+                <option>Credit Card</option>
+                <option>Digital Loan</option>
+                <option>Mortgage</option>
+                <option>Asset Finance</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Currency <span class="req">*</span></label>
+              <select id="f-currency" class="form-select">
+                <option value="">Select currency…</option>
+                <option>UGX</option>
+                <option>USD</option>
+                <option>EUR</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Settlement Approval Date <span class="req">*</span></label>
+              <input id="f-approval-date" class="form-input" type="date"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer NIN <span class="req">*</span></label>
+              <input id="f-nin" class="form-input" type="text" placeholder="e.g. CM12345678QL"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Submitted By <span class="req">*</span></label>
+              <input id="f-submitted-by" class="form-input" type="text" placeholder="Full name of person submitting"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B: VENDOR & FINANCIAL -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">B — Vendor &amp; Financial Details</span></div>
+        <div class="panel-body">
+          <div class="section-divider">Vendor</div>
+          <div class="form-grid" style="margin-bottom:20px;">
+            <div class="form-group">
+              <label class="form-label">Settlement Owner / User <span class="req">*</span></label>
+              <select id="f-owner" class="form-select" onchange="document.getElementById('f-vendor-name').value=this.value;">
+                <option value="">Select your answer…</option>
+                <option>Creditwatch Inhouse</option>
+                <option>CDI</option>
+                <option>Lason Auctioners</option>
+                <option>S &amp; L Advocates unsecured</option>
+                <option>Kalikumutima Advocates</option>
+                <option>SLS Solutions</option>
+                <option>Banar collections</option>
+                <option>Creditwatch</option>
+                <option>Roy Nambogo Advocates</option>
+                <option>Mighty Business Associates</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vendor Name</label>
+              <input id="f-vendor-name" class="form-input" type="text" readonly placeholder="Auto-filled from Settlement Owner"/>
+              <span class="calc-note">⟳ Mirrors Settlement Owner</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vendor Fees</label>
+              <input id="f-vendor-fees" class="form-input" type="number" placeholder="Amount" oninput="calcVendorPct()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vendor Fees (%)</label>
+              <input id="f-vendor-pct" class="form-input" type="number" placeholder="% of approved amount" oninput="calcVendorFees()" step="0.01"/>
+              <span class="calc-note">⟳ Auto-calculates from Vendor Fees or vice versa</span>
+            </div>
+          </div>
+
+          <div class="section-divider">Settlement Amounts</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Current Pay-Off Amount <span class="req">*</span></label>
+              <input id="f-payoff" class="form-input" type="number" placeholder="Numeric value" oninput="calcDifference()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Approved Settlement Amount <span class="req">*</span></label>
+              <input id="f-approved-amt" class="form-input" type="number" placeholder="Numeric value" oninput="calcDifference();calcVendorPct();"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Difference <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-difference" class="form-input" type="number" readonly/>
+              <span class="calc-note">Pay-Off Amount − Approved Settlement Amount</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Account To Be Credited <span class="req">*</span></label>
+              <div class="radio-group" id="f-credit-acct-group">
+                <label class="radio-item"><input type="radio" name="credit-acct" value="031000UGX5108001"/> 031000UGX5108001</label>
+                <label class="radio-item"><input type="radio" name="credit-acct" value="031000USD5108001"/> 031000USD5108001</label>
+                <label class="radio-item"><input type="radio" name="credit-acct" value="8035108001005"/> 8035108001005</label>
+                <label class="radio-item"><input type="radio" name="credit-acct" value="8035108001105"/> 8035108001105</label>
+                <label class="radio-item"><input type="radio" name="credit-acct" value="Other"/> Other</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C: SETTLEMENT TYPE & INSTALLMENTS -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">C — Settlement Type &amp; Instalment Schedule</span></div>
+        <div class="panel-body">
+          <div class="section-divider">Settlement Type</div>
+          <div class="form-grid" style="margin-bottom:20px;">
+            <div class="form-group">
+              <label class="form-label">Settlement Type</label>
+              <select id="f-settlement-type" class="form-select">
+                <option value="">Select…</option>
+                <option>Full Settlement</option>
+                <option>Partial Settlement</option>
+                <option>Instalment Settlement</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Agreed Settlement Type</label>
+              <select id="f-agreed-type" class="form-select">
+                <option value="">Select…</option>
+                <option>Lump Sum</option>
+                <option>Instalment</option>
+                <option>Hybrid</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Frequency</label>
+              <select id="f-frequency" class="form-select">
+                <option value="">Select…</option>
+                <option>Weekly</option>
+                <option>Bi-weekly</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>One-off</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. of Instalments</label>
+              <input id="f-num-instalments" class="form-input" type="number" placeholder="e.g. 6" min="1"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Instalment Amount</label>
+              <input id="f-instalment-amt" class="form-input" type="number" placeholder="Numeric value"/>
+            </div>
+          </div>
+
+          <div class="section-divider">Instalment Dates</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Agreed Date of 1st Instalment</label>
+              <input id="f-first-inst-date" class="form-input" type="date" oninput="calcDays()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Days to First Instalment <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-days-first" class="form-input" type="number" readonly/>
+              <span class="calc-note">Calculated from today's date</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Agreed Date of Final Instalment</label>
+              <input id="f-final-inst-date" class="form-input" type="date" oninput="calcDays()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Days to Final Instalment <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-days-final" class="form-input" type="number" readonly/>
+              <span class="calc-note">Calculated from today's date</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date of Next Instalment / Payment</label>
+              <input id="f-next-inst-date" class="form-input" type="date" oninput="calcDays()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Days to Next Instalment <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-days-next" class="form-input" type="number" readonly/>
+              <span class="calc-note">Calculated from today's date</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D: PAYMENT TRACKING -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">D — Payment Tracking</span></div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Date Latest Payment Received</label>
+              <input id="f-latest-pay-date" class="form-input" type="date"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Latest Amount Received</label>
+              <input id="f-latest-amt" class="form-input" type="number" placeholder="Numeric value" oninput="calcPaymentTotals()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Total Amount Received to Date</label>
+              <input id="f-total-received" class="form-input" type="number" placeholder="Numeric value" oninput="calcOutstanding()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Outstanding Balance to Date <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-outstanding-bal" class="form-input" type="number" readonly/>
+              <span class="calc-note">Approved Amount − Total Received</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. of Instalments Paid</label>
+              <input id="f-instalments-paid" class="form-input" type="number" placeholder="e.g. 3" oninput="calcInstalmentsRemaining()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. of Instalments Remaining <span style="color:var(--blue);font-size:11px;">⟳ Auto</span></label>
+              <input id="f-instalments-remaining" class="form-input" type="number" readonly/>
+              <span class="calc-note">Total Instalments − Paid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E: APPROVAL & NOTIFICATIONS -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">E — Approval, Notifications &amp; Extension</span></div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Approver Name <span class="req">*</span></label>
+              <select id="f-approver" class="form-select">
+                <option value="">Select your answer…</option>
+                <option>MUHWEZI NICHOLAS</option>
+                <option>MUGISHA SIMON PETER</option>
+                <option>SENTAMU ALLAN</option>
+                <option>ADC</option>
+                <option>KWIKIRIZA CHRISTINE</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Settlement Notification</label>
+              <select id="f-notification" class="form-select">
+                <option value="">Select…</option>
+                <option>Sent</option>
+                <option>Pending</option>
+                <option>Not Required</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Extension</label>
+              <select id="f-extension" class="form-select" onchange="toggleExtDate()">
+                <option value="">Select…</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="form-group" id="ext-date-group" style="display:none;">
+              <label class="form-label">Date of Extension</label>
+              <input id="f-ext-date" class="form-input" type="date"/>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Other Comments</label>
+              <textarea id="f-comments" class="form-textarea" placeholder="Enter any additional remarks…"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS -->
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">Supporting Documents</span></div>
+        <div class="panel-body">
+          <div class="file-drop" id="dropZone"
+            ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)"
+            ondrop="handleDrop(event)" onclick="document.getElementById('fileInput').click()">
+            <div class="file-drop-icon">📎</div>
+            <div class="file-drop-text"><strong>Click to upload</strong> or drag &amp; drop</div>
+            <div class="file-drop-text" style="margin-top:4px;font-size:12px;">PDF, DOCX, XLSX, JPG, PNG — max 10MB each</div>
+            <input type="file" id="fileInput" class="hidden" multiple accept=".pdf,.docx,.xlsx,.jpg,.jpeg,.png" onchange="handleFileSelect(event)"/>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;justify-content:flex-end;margin-bottom:40px;">
+        <button class="btn btn-ghost" onclick="resetForm()">🗑 Clear Form</button>
+        <button class="btn btn-primary" onclick="submitEntry()">💾 Submit Filing</button>
+      </div>
+    </div>
+
+    <!-- ═══ RECORDS ═══ -->
+    <div id="view-records" class="hidden">
+      <div class="section-header">
+        <div class="section-title">All Records <span>/ PPB Settlements</span></div>
+        <button class="btn btn-primary" onclick="showView('new')">＋ New Filing</button>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Settlement Register</span>
+          <button class="btn btn-ghost btn-sm" onclick="exportCSV()">⬇ Export CSV</button>
+        </div>
+        <div class="panel-body">
+          <div class="tabs">
+            <div class="tab active" id="tab-all" onclick="setTab('all')">All</div>
+            <div class="tab" id="tab-Pending" onclick="setTab('Pending')">Pending</div>
+            <div class="tab" id="tab-Approved" onclick="setTab('Approved')">Approved</div>
+            <div class="tab" id="tab-Flagged" onclick="setTab('Flagged')">Flagged</div>
+          </div>
+          <div class="filter-bar">
+            <div class="search-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" placeholder="Search name, account, CIF, NIN…" oninput="renderRecords()"/>
+            </div>
+            <select class="form-select" id="filterCurrency" onchange="renderRecords()" style="width:110px;">
+              <option value="">All CCY</option>
+              <option>UGX</option><option>USD</option><option>EUR</option>
+            </select>
+            <select class="form-select" id="filterFacility" onchange="renderRecords()" style="width:160px;">
+              <option value="">All Facilities</option>
+              <option>Term Loan</option><option>Overdraft</option><option>Credit Card</option>
+              <option>Digital Loan</option><option>Mortgage</option><option>Asset Finance</option>
+            </select>
+            <select class="form-select" id="filterOwner" onchange="renderRecords()" style="width:200px;">
+              <option value="">All Owners</option>
+              <option>Creditwatch Inhouse</option><option>CDI</option><option>Lason Auctioners</option>
+              <option>S &amp; L Advocates unsecured</option><option>Kalikumutima Advocates</option>
+              <option>SLS Solutions</option><option>Banar collections</option>
+              <option>Creditwatch</option><option>Roy Nambogo Advocates</option>
+              <option>Mighty Business Associates</option>
+            </select>
+          </div>
+          <div class="tbl-wrap"><table>
+            <thead><tr>
+              <th>Ref</th><th>Date</th><th>CIF</th><th>Customer</th><th>Account</th><th>CCY</th>
+              <th>Approved Amt</th><th>Pay-Off Amt</th><th>Difference</th>
+              <th>Total Received</th><th>Outstanding Bal</th>
+              <th>Owner</th><th>Approver</th><th>Status</th><th>Docs</th><th>Actions</th>
+            </tr></thead>
+            <tbody id="recordsTbody"></tbody>
+          </table>
+          <div id="emptyState" class="empty hidden">
+            <div class="empty-icon">📭</div>
+            <div>No records match your search.</div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-backdrop" id="detailModal">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="modal-title" id="detailTitle">Filing Details</span>
+      <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('detailModal')">Close</button></div>
+  </div>
+</div>
+
+<!-- APPROVE MODAL -->
+<div class="modal-backdrop" id="approveModal">
+  <div class="modal" style="width:460px;">
+    <div class="modal-head"><span class="modal-title">✅ Approve Settlement</span><button class="modal-close" onclick="closeModal('approveModal')">✕</button></div>
+    <div class="modal-body">
+      <p style="color:var(--gray-700);margin-bottom:16px;font-size:14px;">Confirm this settlement record is correct before approving.</p>
+      <div class="form-group"><label class="form-label">Approval Note (optional)</label><textarea id="approveNote" class="form-textarea" placeholder="Add a note for the audit trail…"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('approveModal')">Cancel</button>
+      <button class="btn btn-approve" onclick="confirmApprove()">✅ Confirm Approval</button>
+    </div>
+  </div>
+</div>
+
+<!-- FLAG MODAL -->
+<div class="modal-backdrop" id="flagModal">
+  <div class="modal" style="width:460px;">
+    <div class="modal-head"><span class="modal-title">🚩 Flag Settlement</span><button class="modal-close" onclick="closeModal('flagModal')">✕</button></div>
+    <div class="modal-body">
+      <p style="color:var(--gray-700);margin-bottom:16px;">Flag this record for review or escalation.</p>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label">Flag Reason <span class="req">*</span></label>
+        <select id="flagReason" class="form-select">
+          <option value="">Select reason…</option>
+          <option>Settlement amount discrepancy</option>
+          <option>Missing supporting documents</option>
+          <option>NIN mismatch</option>
+          <option>Unapproved deposit account</option>
+          <option>Payment date breach</option>
+          <option>Vendor fee exceeds limit</option>
+          <option>Duplicate filing</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Additional Details</label><textarea id="flagNote" class="form-textarea" placeholder="Describe the issue…"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('flagModal')">Cancel</button>
+      <button class="btn btn-flag" onclick="confirmFlag()">🚩 Confirm Flag</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+let records = [], selectedFiles = [], currentRef = null, currentTab = 'all';
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  const now = new Date();
+  document.getElementById('f-date').valueAsDate = now;
+  document.getElementById('f-approval-date').valueAsDate = now;
+  document.getElementById('f-update-time').value = now.toISOString().slice(0,16);
+  document.getElementById('navDate').textContent = now.toLocaleDateString('en-UG',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  seedData(); updateStats(); renderDashboard();
+});
+
+// ── SEED DATA ──
+function seedData() {
+  records = [
+    {
+      ref:'PPB-2026-001', date:'2026-03-10', updateTime:'2026-03-10T09:30',
+      cif:'10023847', name:'Acacia Holdings Ltd', acct:'9030001234',
+      facility:'Overdraft', currency:'UGX', approvalDate:'2026-03-10', nin:'CM87654321QL',
+      owner:'Creditwatch Inhouse', vendorName:'Creditwatch Inhouse', vendorFees:2000000, vendorPct:4.12,
+      payoff:62000000, approvedAmt:48500000, difference:13500000, creditAcct:'031000UGX5108001',
+      settlementType:'Partial Settlement', agreedType:'Instalment', frequency:'Monthly',
+      numInstalments:3, instalmentAmt:16166667,
+      firstInstDate:'2026-04-01', daysFirst:12,
+      finalInstDate:'2026-06-01', daysFinal:74,
+      nextInstDate:'2026-04-01', daysNext:12,
+      latestPayDate:'', latestAmt:0, totalReceived:16166667, outstandingBal:32333333,
+      instalmentsPaid:1, instalmentsRemaining:2,
+      approver:'MUHWEZI NICHOLAS', notification:'Sent', extension:'No', extDate:'',
+      comments:'First instalment received on time.', status:'Pending',
+      docs:['Settlement_Acacia.pdf','Board_Resolution.pdf']
+    },
+    {
+      ref:'PPB-2026-002', date:'2026-03-12', updateTime:'2026-03-12T11:00',
+      cif:'10041023', name:'John Mugisha', acct:'9030005678',
+      facility:'Digital Loan', currency:'UGX', approvalDate:'2026-03-12', nin:'CM11223344QL',
+      owner:'SLS Solutions', vendorName:'SLS Solutions', vendorFees:0, vendorPct:0,
+      payoff:1200000, approvedAmt:1200000, difference:0, creditAcct:'8035108001005',
+      settlementType:'Full Settlement', agreedType:'Lump Sum', frequency:'One-off',
+      numInstalments:1, instalmentAmt:1200000,
+      firstInstDate:'2026-03-12', daysFirst:0,
+      finalInstDate:'2026-03-12', daysFinal:0,
+      nextInstDate:'', daysNext:0,
+      latestPayDate:'2026-03-12', latestAmt:1200000, totalReceived:1200000, outstandingBal:0,
+      instalmentsPaid:1, instalmentsRemaining:0,
+      approver:'KWIKIRIZA CHRISTINE', notification:'Sent', extension:'No', extDate:'',
+      comments:'Full payoff at branch.', status:'Approved',
+      docs:['Receipt_Mugisha.pdf']
+    },
+    {
+      ref:'PPB-2026-003', date:'2026-03-15', updateTime:'2026-03-15T14:45',
+      cif:'10008812', name:'Kampala Textiles Co.', acct:'9030009012',
+      facility:'Term Loan', currency:'USD', approvalDate:'2026-03-15', nin:'CM99887766QL',
+      owner:'Kalikumutima Advocates', vendorName:'Kalikumutima Advocates', vendorFees:21600000, vendorPct:18,
+      payoff:185000000, approvedAmt:120000000, difference:65000000, creditAcct:'031000USD5108001',
+      settlementType:'Instalment Settlement', agreedType:'Hybrid', frequency:'Monthly',
+      numInstalments:4, instalmentAmt:30000000,
+      firstInstDate:'2026-04-01', daysFirst:12,
+      finalInstDate:'2026-07-01', daysFinal:104,
+      nextInstDate:'2026-04-01', daysNext:12,
+      latestPayDate:'', latestAmt:0, totalReceived:0, outstandingBal:120000000,
+      instalmentsPaid:0, instalmentsRemaining:4,
+      approver:'SENTAMU ALLAN', notification:'Pending', extension:'No', extDate:'',
+      comments:'Vendor fee 18% — flagged, exceeds limit.', status:'Flagged',
+      docs:['LegalOrder.pdf','SettlementLetter.pdf','Valuation.pdf']
+    },
+  ];
+}
+
+// ── AUTO-CALC FUNCTIONS ──
+function calcDifference() {
+  const payoff = +v('f-payoff')||0, appr = +v('f-approved-amt')||0;
+  document.getElementById('f-difference').value = payoff && appr ? (payoff - appr) : '';
+}
+function calcOutstanding() {
+  const appr = +v('f-approved-amt')||0, recv = +v('f-total-received')||0;
+  document.getElementById('f-outstanding-bal').value = appr ? (appr - recv) : '';
+}
+function calcInstalmentsRemaining() {
+  const total = +v('f-num-instalments')||0, paid = +v('f-instalments-paid')||0;
+  document.getElementById('f-instalments-remaining').value = total ? Math.max(0, total - paid) : '';
+}
+function calcVendorPct() {
+  const fees = +v('f-vendor-fees')||0, appr = +v('f-approved-amt')||0;
+  if(fees && appr) document.getElementById('f-vendor-pct').value = ((fees/appr)*100).toFixed(2);
+}
+function calcVendorFees() {
+  const pct = +v('f-vendor-pct')||0, appr = +v('f-approved-amt')||0;
+  if(pct && appr) document.getElementById('f-vendor-fees').value = ((pct/100)*appr).toFixed(0);
+}
+function calcDays() {
+  setDays('f-first-inst-date','f-days-first');
+  setDays('f-final-inst-date','f-days-final');
+  setDays('f-next-inst-date','f-days-next');
+}
+function setDays(dateId, daysId) {
+  const d = document.getElementById(dateId).value;
+  if(!d){document.getElementById(daysId).value='';return;}
+  const target = new Date(d); target.setHours(0,0,0,0);
+  document.getElementById(daysId).value = Math.round((target-TODAY)/(1000*60*60*24));
+}
+function calcPaymentTotals() { calcOutstanding(); }
+function toggleExtDate() {
+  const show = document.getElementById('f-extension').value === 'Yes';
+  document.getElementById('ext-date-group').style.display = show ? 'flex' : 'none';
+}
+
+// ── VIEWS ──
+function showView(v2) {
+  ['dashboard','new','records'].forEach(id=>document.getElementById('view-'+id).classList.toggle('hidden',id!==v2));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  const map={dashboard:0,new:1,records:2};
+  if(map[v2]!==undefined) document.querySelectorAll('.nav-item')[map[v2]]?.classList.add('active');
+  if(v2==='records'){renderRecords();}
+  if(v2==='dashboard'){updateStats();renderDashboard();}
+}
+function filterView(s){showView('records');currentTab=s;updateTabUI();renderRecords();}
+
+// ── STATS ──
+function updateStats(){
+  const p=records.filter(r=>r.status==='Pending').length;
+  const a=records.filter(r=>r.status==='Approved').length;
+  const f=records.filter(r=>r.status==='Flagged').length;
+  document.getElementById('statTotal').textContent=records.length;
+  document.getElementById('statPending').textContent=p;
+  document.getElementById('statApproved').textContent=a;
+  document.getElementById('statFlagged').textContent=f;
+  document.getElementById('pendingBadge').textContent=p;
+}
+
+// ── DASHBOARD ──
+function renderDashboard(){
+  document.getElementById('dashboardTbody').innerHTML=[...records].reverse().slice(0,5).map(r=>`<tr>
+    <td><span class="mono" style="cursor:pointer;color:var(--blue);" onclick="openDetail('${r.ref}')">${r.ref}</span></td>
+    <td>${r.date}</td>
+    <td><span class="mono">${r.cif}</span></td>
+    <td><strong>${r.name}</strong></td>
+    <td><span class="mono">${r.acct}</span></td>
+    <td><span class="badge-ccy">${r.currency}</span></td>
+    <td><span class="amount">${fmt(r.approvedAmt)}</span></td>
+    <td style="font-size:12px;">${r.owner}</td>
+    <td>${badge(r.status)}</td>
+    <td>${r.docs.length?`<button class="doc-chip" onclick="openDetail('${r.ref}')">📎 ${r.docs.length}</button>`:'—'}</td>
+    <td>${actionBtns(r)}</td>
+  </tr>`).join('');
+}
+
+// ── RECORDS ──
+function setTab(t){currentTab=t;updateTabUI();renderRecords();}
+function updateTabUI(){['all','Pending','Approved','Flagged'].forEach(t=>document.getElementById('tab-'+t)?.classList.toggle('active',t===currentTab));}
+
+function renderRecords(){
+  const q=((document.getElementById('searchInput')?.value)||'').toLowerCase();
+  const ccy=document.getElementById('filterCurrency')?.value||'';
+  const fac=document.getElementById('filterFacility')?.value||'';
+  const own=document.getElementById('filterOwner')?.value||'';
+  const filtered=records.filter(r=>{
+    const mt=currentTab==='all'||r.status===currentTab;
+    const ms=!q||[r.name,r.acct,r.ref,r.cif,r.nin].some(x=>(x||'').toLowerCase().includes(q));
+    return mt&&ms&&(!ccy||r.currency===ccy)&&(!fac||r.facility===fac)&&(!own||r.owner===own);
+  });
+  const tb=document.getElementById('recordsTbody');
+  const em=document.getElementById('emptyState');
+  if(!filtered.length){tb.innerHTML='';em.classList.remove('hidden');return;}
+  em.classList.add('hidden');
+  tb.innerHTML=[...filtered].reverse().map(r=>`<tr>
+    <td><span class="mono" style="cursor:pointer;color:var(--blue);" onclick="openDetail('${r.ref}')">${r.ref}</span></td>
+    <td>${r.date}</td>
+    <td><span class="mono">${r.cif}</span></td>
+    <td><strong>${r.name}</strong></td>
+    <td><span class="mono">${r.acct}</span></td>
+    <td><span class="badge-ccy">${r.currency}</span></td>
+    <td><span class="amount">${fmt(r.approvedAmt)}</span></td>
+    <td><span class="amount">${fmt(r.payoff)}</span></td>
+    <td><span class="amount" style="color:${r.difference>0?'var(--amber)':'var(--green)'}">${fmt(r.difference)}</span></td>
+    <td><span class="amount">${fmt(r.totalReceived)}</span></td>
+    <td><span class="amount" style="color:${r.outstandingBal>0?'var(--red)':'var(--green)'}">${fmt(r.outstandingBal)}</span></td>
+    <td style="font-size:11.5px;">${r.owner}</td>
+    <td style="font-size:11.5px;">${r.approver}</td>
+    <td>${badge(r.status)}</td>
+    <td>${r.docs.length?`<button class="doc-chip" onclick="openDetail('${r.ref}')">📎 ${r.docs.length}</button>`:'—'}</td>
+    <td>${actionBtns(r)}</td>
+  </tr>`).join('');
+}
+
+function actionBtns(r){
+  return r.status==='Pending'
+    ?`<div style="display:flex;gap:4px;"><button class="btn btn-approve btn-sm" onclick="openApprove('${r.ref}')">✅</button><button class="btn btn-flag btn-sm" onclick="openFlag('${r.ref}')">🚩</button></div>`
+    :`<span style="font-size:11.5px;color:var(--gray-400);">${r.status}</span>`;
+}
+
+// ── DETAIL MODAL ──
+function openDetail(ref){
+  const r=records.find(x=>x.ref===ref);if(!r)return;
+  document.getElementById('detailTitle').textContent=`${r.ref} — ${r.name}`;
+  document.getElementById('detailBody').innerHTML=`
+    <div class="detail-section">
+      <div class="detail-section-title">A — Customer &amp; Settlement Identification</div>
+      <div class="detail-grid">
+        ${dl('Ref #',`<span class="mono">${r.ref}</span>`)}
+        ${dl('Status',badge(r.status))}
+        ${dl('Date',r.date)}
+        ${dl('Update Time',r.updateTime||'—')}
+        ${dl('CIF ID',`<span class="mono">${r.cif}</span>`)}
+        ${dl('Customer Name',`<strong>${r.name}</strong>`)}
+        ${dl('Loan Account',`<span class="mono">${r.acct}</span>`)}
+        ${dl('Facility Type',r.facility)}
+        ${dl('Currency',r.currency)}
+        ${dl('Approval Date',r.approvalDate)}
+        ${dl('Customer NIN',`<span class="mono">${r.nin}</span>`)}
+        ${dl('Submitted By',`<strong>${r.submittedBy||'—'}</strong>`)}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">B — Vendor &amp; Financial Details</div>
+      <div class="detail-grid">
+        ${dl('Settlement Owner',r.owner)}
+        ${dl('Vendor Name',r.vendorName||'—')}
+        ${dl('Vendor Fees',`<span class="amount">${fmt(r.vendorFees)}</span>`)}
+        ${dl('Vendor Fees (%)',r.vendorPct?r.vendorPct+'%':'—')}
+        ${dl('Current Pay-Off Amount',`<span class="amount">${fmt(r.payoff)}</span>`)}
+        ${dl('Approved Settlement Amount',`<span class="amount">${fmt(r.approvedAmt)}</span>`)}
+        ${dl('Difference',`<span class="amount detail-value calc">${fmt(r.difference)}</span>`)}
+        ${dl('Account To Be Credited',`<span class="mono">${r.creditAcct||'—'}</span>`)}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">C — Settlement Type &amp; Instalment Schedule</div>
+      <div class="detail-grid">
+        ${dl('Settlement Type',r.settlementType||'—')}
+        ${dl('Agreed Settlement Type',r.agreedType||'—')}
+        ${dl('Frequency',r.frequency||'—')}
+        ${dl('No. of Instalments',r.numInstalments||'—')}
+        ${dl('Instalment Amount',`<span class="amount">${fmt(r.instalmentAmt)}</span>`)}
+        ${dl('Date of 1st Instalment',r.firstInstDate||'—')}
+        ${dl('Days to 1st Instalment',`<span class="detail-value calc">${r.daysFirst??'—'} days</span>`)}
+        ${dl('Date of Final Instalment',r.finalInstDate||'—')}
+        ${dl('Days to Final Instalment',`<span class="detail-value calc">${r.daysFinal??'—'} days</span>`)}
+        ${dl('Date of Next Instalment',r.nextInstDate||'—')}
+        ${dl('Days to Next Instalment',`<span class="detail-value calc">${r.daysNext??'—'} days</span>`)}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">D — Payment Tracking</div>
+      <div class="detail-grid">
+        ${dl('Date Latest Payment',r.latestPayDate||'—')}
+        ${dl('Latest Amount Received',`<span class="amount">${fmt(r.latestAmt)}</span>`)}
+        ${dl('Total Amount Received',`<span class="amount">${fmt(r.totalReceived)}</span>`)}
+        ${dl('Outstanding Balance',`<span class="amount detail-value calc">${fmt(r.outstandingBal)}</span>`)}
+        ${dl('Instalments Paid',r.instalmentsPaid??'—')}
+        ${dl('Instalments Remaining',`<span class="detail-value calc">${r.instalmentsRemaining??'—'}</span>`)}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">E — Approval, Notifications &amp; Extension</div>
+      <div class="detail-grid">
+        ${dl('Approver Name',r.approver)}
+        ${dl('Settlement Notification',r.notification||'—')}
+        ${dl('Extension',r.extension||'—')}
+        ${dl('Date of Extension',r.extDate||'—')}
+        ${dl('Other Comments',r.comments||'—')}
+      </div>
+    </div>
+    ${r.docs.length?`<div class="detail-section">
+      <div class="detail-section-title">Supporting Documents</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${r.docs.map(d=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--gray-100);border-radius:8px;">
+          <span style="font-size:20px;">📄</span>
+          <div style="flex:1;font-weight:500;font-size:13px;">${d}</div>
+          <button class="btn btn-ghost btn-sm">⬇ Download</button>
+        </div>`).join('')}
+      </div>
+    </div>`:''}
+  `;
+  openModal('detailModal');
+}
+function dl(label,value){return `<div class="detail-item"><div class="detail-label">${label}</div><div class="detail-value">${value}</div></div>`;}
+
+// ── FILE UPLOAD ──
+function handleDragOver(e){e.preventDefault();document.getElementById('dropZone').classList.add('dragover');}
+function handleDragLeave(){document.getElementById('dropZone').classList.remove('dragover');}
+function handleDrop(e){e.preventDefault();document.getElementById('dropZone').classList.remove('dragover');addFiles(e.dataTransfer.files);}
+function handleFileSelect(e){addFiles(e.target.files);e.target.value='';}
+function addFiles(files){
+  Array.from(files).forEach(f=>{
+    if(f.size>10*1024*1024){toast(`${f.name} exceeds 10MB`,'error');return;}
+    if(!selectedFiles.find(x=>x.name===f.name&&x.size===f.size))selectedFiles.push(f);
+  });
+  renderFileList();
+}
+function renderFileList(){
+  document.getElementById('fileList').innerHTML=selectedFiles.map((f,i)=>
+    `<div class="file-item">📄 ${f.name} <span style="color:var(--gray-500);font-size:11px;margin-left:4px;">(${(f.size/1024).toFixed(0)} KB)</span>
+    <span class="file-item-remove" onclick="removeFile(${i})">✕</span></div>`).join('');
+}
+function removeFile(i){selectedFiles.splice(i,1);renderFileList();}
+
+// ── SUBMIT ──
+function submitEntry(){
+  const req=[
+    ['f-date','Date'],['f-cif','CIF ID'],['f-name','Customer Name'],
+    ['f-acct','Loan Account Number'],['f-facility','Facility Type'],
+    ['f-currency','Currency'],['f-approval-date','Settlement Approval Date'],
+    ['f-nin','Customer NIN'],['f-submitted-by','Submitted By'],['f-owner','Settlement Owner'],
+    ['f-payoff','Current Pay-Off Amount'],['f-approved-amt','Approved Settlement Amount'],
+    ['f-approver','Approver Name'],
+  ];
+  for(const [id,label] of req){
+    if(!document.getElementById(id).value){toast(`"${label}" is required.`,'error');return;}
+  }
+  const creditAcct=document.querySelector('input[name="credit-acct"]:checked')?.value;
+  if(!creditAcct){toast('"Account To Be Credited" is required.','error');return;}
+
+  const payoff=+v('f-payoff')||0, appr=+v('f-approved-amt')||0;
+  const totalRecv=+v('f-total-received')||0, numInst=+v('f-num-instalments')||0, paid=+v('f-instalments-paid')||0;
+
+  const ref='PPB-'+new Date().getFullYear()+'-'+String(records.length+1).padStart(3,'0');
+  records.push({
+    ref,
+    date:v('f-date'), updateTime:v('f-update-time'),
+    cif:v('f-cif').trim(), name:v('f-name').trim(), acct:v('f-acct').trim(),
+    facility:v('f-facility'), currency:v('f-currency'), approvalDate:v('f-approval-date'), nin:v('f-nin').trim(),
+    submittedBy:v('f-submitted-by').trim(),
+    owner:v('f-owner'), vendorName:v('f-vendor-name').trim(),
+    vendorFees:+v('f-vendor-fees')||0, vendorPct:+v('f-vendor-pct')||0,
+    payoff, approvedAmt:appr, difference:payoff-appr, creditAcct,
+    settlementType:v('f-settlement-type'), agreedType:v('f-agreed-type'),
+    frequency:v('f-frequency'), numInstalments:numInst, instalmentAmt:+v('f-instalment-amt')||0,
+    firstInstDate:v('f-first-inst-date'), daysFirst:+v('f-days-first')||0,
+    finalInstDate:v('f-final-inst-date'), daysFinal:+v('f-days-final')||0,
+    nextInstDate:v('f-next-inst-date'), daysNext:+v('f-days-next')||0,
+    latestPayDate:v('f-latest-pay-date'), latestAmt:+v('f-latest-amt')||0,
+    totalReceived:totalRecv, outstandingBal:appr-totalRecv,
+    instalmentsPaid:paid, instalmentsRemaining:Math.max(0,numInst-paid),
+    approver:v('f-approver'), notification:v('f-notification'),
+    extension:v('f-extension'), extDate:v('f-ext-date'),
+    comments:v('f-comments'), status:'Pending', docs:selectedFiles.map(f=>f.name),
+  });
+
+  toast(`${ref} submitted successfully!`,'success');
+  resetForm(); showView('records'); updateStats();
+}
+
+function resetForm(){
+  ['f-date','f-update-time','f-cif','f-name','f-acct','f-facility','f-currency','f-approval-date','f-nin',
+   'f-owner','f-vendor-name','f-vendor-fees','f-vendor-pct','f-payoff','f-approved-amt','f-difference',
+   'f-submitted-by',
+   'f-settlement-type','f-agreed-type','f-frequency','f-num-instalments','f-instalment-amt',
+   'f-first-inst-date','f-days-first','f-final-inst-date','f-days-final','f-next-inst-date','f-days-next',
+   'f-latest-pay-date','f-latest-amt','f-total-received','f-outstanding-bal',
+   'f-instalments-paid','f-instalments-remaining',
+   'f-approver','f-notification','f-extension','f-ext-date','f-comments']
+    .forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.querySelectorAll('input[name="credit-acct"]').forEach(r=>r.checked=false);
+  document.getElementById('ext-date-group').style.display='none';
+  const now=new Date();
+  document.getElementById('f-date').valueAsDate=now;
+  document.getElementById('f-approval-date').valueAsDate=now;
+  document.getElementById('f-update-time').value=now.toISOString().slice(0,16);
+  selectedFiles=[];renderFileList();
+}
+
+// ── APPROVE / FLAG ──
+function openApprove(ref){currentRef=ref;document.getElementById('approveNote').value='';openModal('approveModal');}
+function openFlag(ref){currentRef=ref;document.getElementById('flagReason').value='';document.getElementById('flagNote').value='';openModal('flagModal');}
+function confirmApprove(){
+  const r=records.find(x=>x.ref===currentRef);if(r)r.status='Approved';
+  closeModal('approveModal');toast(`${currentRef} approved.`,'success');
+  updateStats();renderRecords();renderDashboard();
+}
+function confirmFlag(){
+  const reason=document.getElementById('flagReason').value;
+  if(!reason){toast('Please select a flag reason.','error');return;}
+  const r=records.find(x=>x.ref===currentRef);
+  if(r){r.status='Flagged';r.comments+=(r.comments?'\n':'')+`[FLAGGED] ${reason}: ${document.getElementById('flagNote').value}`;}
+  closeModal('flagModal');toast(`${currentRef} flagged.`,'error');
+  updateStats();renderRecords();renderDashboard();
+}
+
+// ── MODAL ──
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+// ── TOAST ──
+function toast(msg,type=''){
+  const tc=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className='toast '+type;
+  t.innerHTML=`<span>${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</span><span>${msg}</span>`;
+  tc.appendChild(t);setTimeout(()=>t.remove(),4000);
+}
+
+// ── HELPERS ──
+function v(id){return document.getElementById(id)?.value||'';}
+function fmt(n){return Number(n||0).toLocaleString('en-UG');}
+function badge(s){const m={Pending:'badge-pending',Approved:'badge-approved',Flagged:'badge-flagged'};return `<span class="badge ${m[s]||''}"><span class="badge-dot"></span>${s}</span>`;}
+
+// ── EXPORT CSV ──
+function exportCSV(){
+  const cols=[
+    'Ref','Date','Update Time','CIF','Customer','Account','Facility','Currency','Approval Date','NIN','Submitted By',
+    'Owner','Vendor Name','Vendor Fees','Vendor Fees (%)','Pay-Off Amt','Approved Amt','Difference','Credit Account',
+    'Settlement Type','Agreed Type','Frequency','No. Instalments','Instalment Amt',
+    'First Inst. Date','Days to First','Final Inst. Date','Days to Final','Next Inst. Date','Days to Next',
+    'Latest Pay Date','Latest Amt','Total Received','Outstanding Bal','Instalments Paid','Instalments Remaining',
+    'Approver','Notification','Extension','Ext. Date','Comments','Status'
+  ];
+  const rows=records.map(r=>[
+    r.ref,r.date,r.updateTime,r.cif,r.name,r.acct,r.facility,r.currency,r.approvalDate,r.nin,r.submittedBy||'',
+    r.owner,r.vendorName,r.vendorFees,r.vendorPct,r.payoff,r.approvedAmt,r.difference,r.creditAcct,
+    r.settlementType,r.agreedType,r.frequency,r.numInstalments,r.instalmentAmt,
+    r.firstInstDate,r.daysFirst,r.finalInstDate,r.daysFinal,r.nextInstDate,r.daysNext,
+    r.latestPayDate,r.latestAmt,r.totalReceived,r.outstandingBal,r.instalmentsPaid,r.instalmentsRemaining,
+    r.approver,r.notification,r.extension,r.extDate,(r.comments||'').replace(/\n/g,' '),r.status
+  ].map(x=>`"${x??''}"`).join(','));
+  const csv=[cols.join(','),...rows].join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`PPB_Settlements_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  toast('CSV exported.','success');
+}
+</script>
+</body>
+</html>
