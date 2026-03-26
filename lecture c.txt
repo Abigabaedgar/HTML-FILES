@@ -1,0 +1,93 @@
+#include<stdio.h>
+int added (x,int y,int z) // function declaration
+{
+int w;
+w=(x+y+z);
+return w;
+}
+
+int main()
+{ int a,b,c,d;
+prinf("please enter the values of a\n");
+scanf("%d",&a);
+
+prinf("please enter the values of b\n");
+scanf("%d",&b);
+
+prinf("please enter the values of c\n");
+scanf("%d",&c);
+
+\\scan("%d\n%d\n",&a,&b,&c);
+d=added(a,b,c);///function call
+
+printf("the total is %d\n",d);
+}
+
+New program  save it as awith a ".h" estension
+***** how to call a function****
+int added (x,int y,int z) // function declaration
+{
+int w;
+w=(x+y+z);
+return w;
+}
+
+
+*****another file**
+#include<stdio.h>
+#include"saved_file.h"
+int main()
+{ int a,b,c,d;
+prinf("please enter the values of a\n");
+scanf("%d",&a);
+
+prinf("please enter the values of b\n");
+scanf("%d",&b);
+
+prinf("please enter the values of c\n");
+scanf("%d",&c);
+
+//scan("%d\n%d\n",&a,&b,&c);
+d=added(a,b,c);///function call
+
+printf("the total is %d\n",d);
+}
+
+
+
+****do for one to return the biggest integer***
+
+
+
+#ARRAYS##
+//Testing indexing sequence
+#include<studio.h>
+int main()
+{
+int age[10]={1,2,3,4,5,6,7,8,9,10};
+intx;
+x=age[4];
+printf("The fourth item in the array is %d",x);
+return 0;
+}
+
+
+****combination since start***
+#include<studio.h>
+int main()
+{
+int i,n;
+int marks[n];
+printf("please enter the number of students\n")
+scanf("%d",&n);
+for (i=0;i<n;i++)
+{
+printf("enter the marks for student%d;",i+1);
+scanf("%d",&marhks[i];//saving marksin an array
+sum+=marks[i];
+
+}
+
+printf ("sum of marks=%d",sum);
+return o;
+}
